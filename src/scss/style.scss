@@ -1,0 +1,103 @@
+// variables
+$body-bg: #2EE3E0;
+$main-font: 'Karla', sans-serif;
+$primary-color: #C76ED9;
+$secondary-color: #3472CC;
+$light: #f4f4f4;
+$dark: #333;
+$container: 960px;
+$section-padding: 20px;
+
+// functions
+@function set-text-color($bg-color){
+  @if(lightness($bg-color) > 50) {
+    @return black;
+  } @else {
+    @return white;
+  } 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $body-bg;
+  font-family: $main-font;
+  text-align: center;
+}
+
+.container {
+  max-width: $container;
+  margin: auto;
+  padding: 0 20px;
+}
+
+header#main-header {
+  padding: 1em;
+  background: $primary-color;
+  color: set-text-color($primary-color);
+ 
+ h1 {
+   font-size: 40px;
+ }
+}
+
+nav#main-nav {
+  background: $secondary-color;
+  height: 40px;
+
+  ul {
+    list-style: none;
+    padding-top: 10px;
+  }
+
+  li {
+    display: inline;
+    color: white;
+  }
+
+  a {
+    padding-right: 20px;
+    &:hover {
+      color: #ccc;
+    } 
+  }
+}
+
+.section {
+  padding: $section-padding;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+}
+
+#section-a {
+  @extend .section;
+  background: $light;
+  color: set-text-color($light)
+}
+
+#section-b {
+  @extend .section;
+  background: $dark;
+  color: set-text-color($dark)
+ }
+
+ .button {
+   padding: 10px 15px;
+ }
+
+ .button-a {
+   @extend .button;
+   background: darken($primary-color, 10%);
+   color: set-text-color($primary-color)
+ }
+ 
+ .button-b {
+  @extend .button;
+  background: lighten($secondary-color, 10%);
+  color: set-text-color($secondary-color)
+}

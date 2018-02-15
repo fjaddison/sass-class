@@ -1,0 +1,24 @@
+{
+  "name": "sass-class",
+  "version": "1.0.0",
+  "description": "I'm going to spend the day (2/15/18) learning about Sass and will push the results to this repo.",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjaddison/sass-class.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fjaddison/sass-class/issues"
+  },
+  "homepage": "https://github.com/fjaddison/sass-class#readme",
+  "dependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

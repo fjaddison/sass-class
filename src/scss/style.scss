@@ -1,20 +1,78 @@
-// variables
-$body-bg: #2EE3E0;
-$main-font: 'Karla', sans-serif;
-$primary-color: #C76ED9;
-$secondary-color: #3472CC;
-$light: #f4f4f4;
-$dark: #333;
-$container: 960px;
-$section-padding: 20px;
+//https://css-tricks.com/almanac/properties/a/animation/
+// feel like I know the basics of Sass so I'm checking out @keyframes as well
+@import 'variables';
+@import 'functions';
 
-// functions
-@function set-text-color($bg-color){
-  @if(lightness($bg-color) > 50) {
-    @return black;
-  } @else {
-    @return white;
-  } 
+@keyframes pulse1 {
+  0% {
+    background-color: $secondary-color;
+  }
+  25% {
+    background-color: adjust-hue($secondary-color, 90deg);
+  }
+  50% {
+    background-color: adjust-hue($secondary-color, 180deg);
+  }
+  75% {
+    background-color: adjust-hue($secondary-color, 270deg);
+  }
+  100% {
+    background-color: adjust-hue($secondary-color, 350deg);
+  }
+}
+
+@keyframes pulse2 {
+  0% {
+    background-color: $tertiary-color;
+  }
+  25% {
+    background-color: adjust-hue($tertiary-color, 90deg);
+  }
+  50% {
+    background-color: adjust-hue($tertiary-color, 180deg);
+  }
+  75% {
+    background-color: adjust-hue($tertiary-color, 270deg);
+  }
+  100% {
+    background-color: adjust-hue($tertiary-color, 350deg);
+  }
+}
+
+@keyframes fontshift {
+  0% {
+    font-family: $main-font;
+  }
+  10% {
+    font-family: $font-ten;
+  }
+  20% {
+    font-family: $font-two;
+  }
+  30% {
+    font-family: $font-three;
+  }
+  40% {
+    font-family: $font-four;
+  }
+  50% {
+    font-family: $font-five;
+  }
+  60% {
+    font-family: $font-six;
+  }
+  70% {
+    font-family: $main-font;
+  }
+  80% {
+    font-family: $font-seven;
+  }
+  90% {
+    font-family: $font-eight;
+  }
+  100% {
+    font-family: $font-nine;
+  }
 }
 
 * {
@@ -26,6 +84,11 @@ body {
   background: $body-bg;
   font-family: $main-font;
   text-align: center;
+  color: white;
+}
+
+.crazy-letters {
+  animation: fontshift 15s infinite;
 }
 
 .container {
@@ -38,6 +101,9 @@ header#main-header {
   padding: 1em;
   background: $primary-color;
   color: set-text-color($primary-color);
+  &:hover {
+    background: adjust-hue($primary-color, 30deg)
+  }
  
  h1 {
    font-size: 40px;
@@ -55,13 +121,13 @@ nav#main-nav {
 
   li {
     display: inline;
-    color: white;
   }
 
   a {
     padding-right: 20px;
+    color: $primary-color;
     &:hover {
-      color: #ccc;
+      color: lighten($primary-color, 20%);
     } 
   }
 }
@@ -77,27 +143,44 @@ nav#main-nav {
 #section-a {
   @extend .section;
   background: $light;
-  color: set-text-color($light)
+  color: set-text-color($light);
+  animation: pulse1 14s infinite;
 }
 
 #section-b {
   @extend .section;
   background: $dark;
-  color: set-text-color($dark)
+  color: set-text-color($dark);
+  animation: pulse2 14s infinite;
  }
 
  .button {
    padding: 10px 15px;
+   text-decoration: none;
  }
 
  .button-a {
    @extend .button;
    background: darken($primary-color, 10%);
-   color: set-text-color($primary-color)
+   color: set-text-color($primary-color);
+   box-shadow: 0 0 7px 0px $tertiary-color;
+   &:hover {
+    background: lighten($tertiary-color, 10%);
+    color: set-text-color($tertiary-color);
+    box-shadow: 0 0 7px 0px complement($secondary-color);
+   }
  }
  
  .button-b {
   @extend .button;
   background: lighten($secondary-color, 10%);
-  color: set-text-color($secondary-color)
+  color: set-text-color($secondary-color);
+  box-shadow: 0 0 7px 0px $tertiary-color;
+  &:hover {
+    background: darken($tertiary-color, 10%);
+    color: set-text-color($tertiary-color);
+    box-shadow: 0 0 7px 0px $primary-color;
+  }
 }
+
+
